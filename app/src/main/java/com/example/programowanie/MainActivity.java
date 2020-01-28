@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listview);
         sortText = (Button) findViewById(R.id.buttonSort);
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, listName);
-        listView.setAdapter(arrayAdapter);
+        Show();
 
         addText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,15 +49,30 @@ public class MainActivity extends AppCompatActivity {
                     listName.add(name);
 
 
+
+
                 }
             }
         });
         sortText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SortAndShow();
 
             }
         });
 
+    }
+
+    void Show()
+    {
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, listName);
+        listView.setAdapter(arrayAdapter);
+    }
+    void SortAndShow()
+    {
+        Collections.sort(listName);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, listName);
+        listView.setAdapter(arrayAdapter);
     }
 }
